@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/submit_menu"
+        android:title="Mulai"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/setting_menu"
+        android:title="haha"
+        app:showAsAction="always">
+    </item>
+</menu>

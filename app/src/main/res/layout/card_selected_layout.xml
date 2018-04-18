@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="50sp"
+    android:layout_height="50sp">
+
+    <TextView
+        android:layout_width="30sp"
+        android:layout_height="50sp"
+        android:id="@+id/textSelectedCard"
+        android:clickable="true"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        />
+</LinearLayout>

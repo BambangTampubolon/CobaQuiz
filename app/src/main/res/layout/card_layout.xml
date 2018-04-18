@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="100sp"
+    android:layout_height="120sp">
+
+        <TextView
+            android:layout_width="80sp"
+            android:layout_height="100sp"
+            android:id="@+id/cardView"
+            android:clickable="true"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textStyle="italic|bold"
+            android:textAllCaps="true"
+            android:textSize="70px"
+            android:paddingBottom="10sp"
+            android:paddingRight="10sp"
+            android:fontFamily="monospace"
+            android:layout_marginRight="20sp"/>
+
+
+</LinearLayout>
