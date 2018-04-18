@@ -29,14 +29,10 @@ import java.util.Random;
 
 public class MainActivity extends Activity implements RecyclerViewItemClickInterface {
 
-
-    private List<String> kartuKeluar;
-    private TextView textAlarm;
-    private CountDownTimer countdowntimer;
-    private CountDownTimer countDownRound;
+    private TextView answerTimer;
+    private CountDownTimer timerCountDown;
     private TextView textOperator1, textOperator2, textOperator3, textOperator4, textHasil, textOperator5, textOperator6;
     private Button buttonSubmit;
-    private int counter;
     private RecyclerView mRecyclerView, cardRecyclerView;
     private RecyclerView.Adapter mAdapter, cardAdapter;
     private LinearLayoutManager mLayoutManager, cardLayoutManager;
@@ -44,14 +40,8 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
     private List<Card> selectedCard;
     private List<Card> cardRandomed;
     private List<Card> cardOperator;
-    private Toast finishToast;
-    private boolean start;
-    private MenuItem menuItem;
-    private long countDownCount, lastCountTimer;
-    private boolean prosesJawab, resumeStatus;
 
     private boolean card1Clicked, card2Clicked, card3Clicked, card4Clicked;
-    private boolean operatorClicked, numberClicked;
 
 
 
@@ -60,12 +50,9 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cardList = new ArrayList<>();
-        kartuKeluar = new ArrayList<>();
         selectedCard = new ArrayList<>();
         cardRandomed = new ArrayList<>();
         cardOperator = populateOperatorCard();
-        finishToast = Toast.makeText(this, "kartu sudah habis", Toast.LENGTH_SHORT);
-        start = true;
         initiateCardCondition();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -78,21 +65,16 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
         cardRecyclerView.setLayoutManager(cardLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         cardRecyclerView.setAdapter(cardAdapter);
-        prosesJawab = false;
-        resumeStatus = false;
-        counter = 0;
-        lastCountTimer = 10000;
-        countDownCount = 0;
-        textAlarm = (TextView) findViewById(R.id.timerText);
         textOperator1 = (TextView) findViewById(R.id.operator1);
         textOperator2 = (TextView) findViewById(R.id.operator2);
         textOperator3 = (TextView) findViewById(R.id.operator3);
         textOperator4 = (TextView) findViewById(R.id.operator4);
         textOperator5 = (TextView) findViewById(R.id.operator5);
         textOperator6 = (TextView) findViewById(R.id.operator6);
+        answerTimer = (TextView) findViewById(R.id.timerText);
         textHasil = (TextView) findViewById(R.id.hasilResult);
         buttonSubmit = (Button) findViewById(R.id.submit_result);
-
+        StartTimer(10000);
         Intent intentFromQuizActivity = getIntent();
         List<Card> checkCard = (List<Card>)intentFromQuizActivity.getSerializableExtra("listCardRandomed");
         for(Card a: checkCard){
@@ -146,78 +128,41 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int finalResult = doPrioritiesToCalculation(selectedCard);
-                Intent intentToResult = new Intent(MainActivity.this, ResultDialog.class);
-                intentToResult.putExtra("answerByUser", finalResult);
-                textHasil.setText(String.valueOf(finalResult));
-                startActivity(intentToResult);
+               FinishActivity();
             }
         });
+    }
 
 
-        //starting randoming card to calculate==> controller
-        countdowntimer = new CountDownTimer(2000, 1000){
+    public void FinishActivity(){
+        int finalResult = doPrioritiesToCalculation(selectedCard);
+        Intent intentToResult = new Intent(MainActivity.this, ResultDialog.class);
+        intentToResult.putExtra("answerByUser", finalResult);
+        textHasil.setText(String.valueOf(finalResult));
+        startActivity(intentToResult);
+    }
+
+    public void StartTimer(long timerLimit){
+        timerCountDown = new CountDownTimer(timerLimit, 1000) {
             @Override
             public void onTick(long l) {
-                textAlarm.setText(String.valueOf(l/1000));
+                answerTimer.setText(String.valueOf(l/1000));
             }
 
             @Override
             public void onFinish() {
-                resetDataKartuHitung();
-                textAlarm.setText("00");
-                if(cardList.size()<4){
-                    Log.i("cek", "onFinish: " + cardList.size());
-                    finishToast.show();
-                } else {
-                    for(int i = 0; i<4;i++){
-                        Card myCard = new Card();
-                        if(myCard != null){
-                            cardRandomed.add(myCard);
-                            cardAdapter.notifyDataSetChanged();
-                        }
-                    }
-                    StartCountDownTimer(lastCountTimer);
-                }
-
+                answerTimer.setText("times up boysss");
+                FinishActivity();
             }
         };
-
+        timerCountDown.start();
     }
-
 
     @Override
     public void onBackPressed() {
 
 //        super.onBackPressed();
     }
-
-    private void StartCountDownTimer(long timerCount){
-        //starting to countdown after randomed card is viewed
-        countDownRound = new CountDownTimer(timerCount, 1000) {
-            @Override
-            public void onTick(long l) {
-                countDownCount = l;
-                textAlarm.setText(String.valueOf(l/1000));
-            }
-
-
-
-            @Override
-            public void onFinish() {
-                for(Card c : cardRandomed){
-                    kartuKeluar.add(c.getTampilan());
-                }
-                cardRandomed.clear();
-                cardAdapter.notifyDataSetChanged();
-                textAlarm.setText("selesaiiiiii");
-            }
-        };
-        countDownRound.start();
-    }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -331,7 +276,6 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
                     if(checkLastCard(cardRandomed.get(position))){
                         addDataToHitung(cardRandomed.get(position));
                     }
-                    operatorClicked = false;
                     card2Clicked = true;
                 }
                 break;
@@ -343,7 +287,6 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
                     if(checkLastCard(cardRandomed.get(position))){
                         addDataToHitung(cardRandomed.get(position));
                     }
-                    operatorClicked = false;
                     card3Clicked = true;
                 }
                 break;
@@ -355,7 +298,6 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
                     if(checkLastCard(cardRandomed.get(position))){
                         addDataToHitung(cardRandomed.get(position));
                     }
-                    operatorClicked = false;
                     card4Clicked = true;
                 }
         }

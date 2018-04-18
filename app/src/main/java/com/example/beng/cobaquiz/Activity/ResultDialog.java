@@ -3,6 +3,7 @@ package com.example.beng.cobaquiz.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.opengl.EGLExt;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class ResultDialog extends Activity {
     private TextView textResult;
     private Button okButton;
     private int answerResult;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +34,35 @@ public class ResultDialog extends Activity {
             textResult.setText("Jawaban anda benar " + answerResult);
         }
 
+        countDownTimer = new CountDownTimer(2000,1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                MoveToQuizActivity();
+            }
+        };
+        countDownTimer.start();
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentToQuizBack = new Intent(ResultDialog.this, QuizActivity.class);
-                startActivity(intentToQuizBack);
+                MoveToQuizActivity();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
+       MoveToQuizActivity();
+        //        super.onBackPressed();
+    }
+
+
+    public void MoveToQuizActivity(){
         Intent intent = new Intent(ResultDialog.this, QuizActivity.class);
         startActivity(intent);
-        //        super.onBackPressed();
     }
 }
