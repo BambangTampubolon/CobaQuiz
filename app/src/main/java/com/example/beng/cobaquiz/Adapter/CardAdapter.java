@@ -46,23 +46,186 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.UserViewHolder
             }
         });
 
-        holder.textNumber.setText(cardList.get(position).getTampilan());
         switch (cardList.get(position).getJenis()){
             case 1:
-                holder.textNumber.setBackgroundResource(R.drawable.bg_spade_straigth);
-                holder.textNumber.setPadding(2,0,0,2);
+                switch (cardList.get(position).getTampilan()){
+                    case "A":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_a);
+                        break;
+                    case "2":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_2);
+                        break;
+                    case "3":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_3);
+                        break;
+                    case "4":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_4);
+                        break;
+                    case "5":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_5);
+                        break;
+                    case "6":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_6);
+                        break;
+                    case "7":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_7);
+                        break;
+                    case "8":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_8);
+                        break;
+                    case "9":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_9);
+                        break;
+                    case "10":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_10);
+                        break;
+                    case "J":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_j);
+                        break;
+                    case "Q":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_q);
+                        break;
+                    case "K":
+                        holder.textNumber.setBackgroundResource(R.drawable.spade_k);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 2:
-                holder.textNumber.setBackgroundResource(R.drawable.bg_club_straight);
-                holder.textNumber.setPadding(2,0,0,5);
+                switch (cardList.get(position).getTampilan()){
+                    case "A":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_a);
+                        break;
+                    case "2":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_2);
+                        break;
+                    case "3":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_3);
+                        break;
+                    case "4":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_4);
+                        break;
+                    case "5":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_5);
+                        break;
+                    case "6":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_6);
+                        break;
+                    case "7":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_7);
+                        break;
+                    case "8":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_8);
+                        break;
+                    case "9":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_9);
+                        break;
+                    case "10":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_10);
+                        break;
+                    case "J":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_j);
+                        break;
+                    case "Q":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_q);
+                        break;
+                    case "K":
+                        holder.textNumber.setBackgroundResource(R.drawable.club_k);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 3:
-                holder.textNumber.setBackgroundResource(R.drawable.bg_diamond_straight);
-                holder.textNumber.setPadding(2,5,0,0);
+                switch (cardList.get(position).getTampilan()){
+                    case "A":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_a);
+                        break;
+                    case "2":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_2);
+                        break;
+                    case "3":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_3);
+                        break;
+                    case "4":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_4);
+                        break;
+                    case "5":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_5);
+                        break;
+                    case "6":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_6);
+                        break;
+                    case "7":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_7);
+                        break;
+                    case "8":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_8);
+                        break;
+                    case "9":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_9);
+                        break;
+                    case "10":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_10);
+                        break;
+                    case "J":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_j);
+                        break;
+                    case "Q":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_q);
+                        break;
+                    case "K":
+                        holder.textNumber.setBackgroundResource(R.drawable.diamonds_k);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case 4:
-                holder.textNumber.setBackgroundResource(R.drawable.bg_hearts_straight);
-                holder.textNumber.setPadding(2,10,0,0);
+                switch (cardList.get(position).getTampilan()){
+                    case "A":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_a);
+                        break;
+                    case "2":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_2);
+                        break;
+                    case "3":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_3);
+                        break;
+                    case "4":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_4);
+                        break;
+                    case "5":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_5);
+                        break;
+                    case "6":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_6);
+                        break;
+                    case "7":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_7);
+                        break;
+                    case "8":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_8);
+                        break;
+                    case "9":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_9);
+                        break;
+                    case "10":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_9);
+                        break;
+                    case "J":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_j);
+                        break;
+                    case "Q":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_q);
+                        break;
+                    case "K":
+                        holder.textNumber.setBackgroundResource(R.drawable.hearts_k);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;

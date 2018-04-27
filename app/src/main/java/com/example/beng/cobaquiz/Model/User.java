@@ -1,13 +1,24 @@
 package com.example.beng.cobaquiz.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by Beng on 3/12/2018.
  */
 
-public class User {
+public class User implements Serializable{
     private String namaUser;
     private String idUser;
     private int jumlahBenar;
+    private boolean answerStatus;
+
+    public void setAnswerStatus(boolean answerStatus) {
+        this.answerStatus = answerStatus;
+    }
+
+    public boolean isAnswerStatus() {
+        return answerStatus;
+    }
 
     public String getNamaUser() {
         return namaUser;

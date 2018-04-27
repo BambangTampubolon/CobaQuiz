@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.beng.cobaquiz.Model.User;
 import com.example.beng.cobaquiz.R;
 
 public class ResultDialog extends Activity {
@@ -18,6 +19,7 @@ public class ResultDialog extends Activity {
     private Button okButton;
     private int answerResult;
     private CountDownTimer countDownTimer;
+    private User userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,11 @@ public class ResultDialog extends Activity {
         okButton = (Button) findViewById(R.id.okButton);
         Intent intent = getIntent();
         answerResult = intent.getIntExtra("answerByUser", 0);
+        userData = (User) intent.getSerializableExtra("userData");
         if(answerResult != 24){
-            textResult.setText("Jawaban anda salah " + answerResult);
+            textResult.setText("Jawaban"+ userData.getNamaUser() +" salah " + answerResult);
         } else {
-            textResult.setText("Jawaban anda benar " + answerResult);
+            textResult.setText("Jawaban"+ userData.getNamaUser() +" benar " + answerResult);
         }
 
         countDownTimer = new CountDownTimer(2000,1000) {

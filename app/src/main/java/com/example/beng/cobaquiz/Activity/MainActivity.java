@@ -20,6 +20,7 @@ import com.example.beng.cobaquiz.Adapter.CardAdapter;
 import com.example.beng.cobaquiz.Adapter.CardAdapterMain;
 import com.example.beng.cobaquiz.Interface.RecyclerViewItemClickInterface;
 import com.example.beng.cobaquiz.Model.Card;
+import com.example.beng.cobaquiz.Model.User;
 import com.example.beng.cobaquiz.R;
 
 import java.io.Serializable;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
     private List<Card> selectedCard;
     private List<Card> cardRandomed;
     private List<Card> cardOperator;
+    private User answeringUser;
 
     private boolean card1Clicked, card2Clicked, card3Clicked, card4Clicked;
 
@@ -77,10 +79,10 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
         StartTimer(10000);
         Intent intentFromQuizActivity = getIntent();
         List<Card> checkCard = (List<Card>)intentFromQuizActivity.getSerializableExtra("listCardRandomed");
+        answeringUser = (User)intentFromQuizActivity.getSerializableExtra("userAnswer");
         for(Card a: checkCard){
             cardRandomed.add(a);
         }
-        Log.i("ceklistlemparan", "onCreate: " + cardRandomed.size());
         cardAdapter.notifyDataSetChanged();
 
         textOperator1.setOnClickListener(new View.OnClickListener() {
@@ -135,10 +137,15 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
 
 
     public void FinishActivity(){
-        int finalResult = doPrioritiesToCalculation(selectedCard);
         Intent intentToResult = new Intent(MainActivity.this, ResultDialog.class);
-        intentToResult.putExtra("answerByUser", finalResult);
-        textHasil.setText(String.valueOf(finalResult));
+        try {
+            int finalResult = doPrioritiesToCalculation(selectedCard);
+            intentToResult.putExtra("answerByUser", finalResult);
+            intentToResult.putExtra("userData", answeringUser);
+            textHasil.setText(String.valueOf(finalResult));
+        } catch(Error error) {
+            intentToResult.putExtra("answerByUser", 0);
+        }
         startActivity(intentToResult);
     }
 
@@ -403,8 +410,8 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
 
     //method to calculate all stacked card in selectedcard list
     private int doCalculation(List<Card> listToCalculate){
-        for(Card a : listToCalculate){
-            Log.i("ceklistyangdihitung", "doCalculation: " + a.getTampilan());
+        if(listToCalculate.size()<1){
+            return 0;
         }
         List<Integer> listOperator = new ArrayList<>();
         List<Integer> listAngka = new ArrayList<>();
@@ -460,10 +467,9 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
                     listAngka.add(i+1, angkaGanti);
                 }
             }
-            Log.i("cekdimana", "doCalculation: " + listAngka.get(listAngka.size()-1));
 
         } catch (Exception e){
-            Log.i("cekerror", "doCalculation: " + e.toString());
+            return 0;
         }
         return listAngka.get(listAngka.size()-1);
     }
