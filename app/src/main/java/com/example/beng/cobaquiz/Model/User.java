@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class User implements Serializable{
     private String namaUser;
-    private String idUser;
+    private int idUser;
     private int jumlahBenar;
     private boolean answerStatus;
 
@@ -28,11 +28,11 @@ public class User implements Serializable{
         this.namaUser = namaUser;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

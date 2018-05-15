@@ -133,6 +133,7 @@ public class MainActivity extends Activity implements RecyclerViewItemClickInter
                FinishActivity();
             }
         });
+
     }
 
 

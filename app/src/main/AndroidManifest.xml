@@ -21,10 +21,22 @@
         <activity android:name=".Activity.PopUpStart" />
         <activity
             android:name=".Activity.QuizActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape"
-            android:launchMode="singleTask"/>
-        <activity android:name=".Activity.ResultDialog"
-            android:theme="@android:style/Theme.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
+        <activity
+            android:name=".Activity.ResultDialog"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".Activity.SettingGameRule"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_setting_game_rule"
+            android:parentActivityName=".Activity.HomeActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.beng.cobaquiz.Activity.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

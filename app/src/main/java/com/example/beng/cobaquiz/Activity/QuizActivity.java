@@ -3,6 +3,7 @@ package com.example.beng.cobaquiz.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,10 +29,11 @@ public class QuizActivity extends Activity {
     private List<Card> cardRandomedResult;
     private List<Card> listToPass;
     private Button startButton, answerButton;
-    private Button playerButton1, playerButton2, playerButton3, playerButton4, playerButton5, playerButton6, playerButton7, playerButton8;
-    private List<Button> listButtonPlayer;
+    private FloatingActionButton  playerButton1, playerButton2, playerButton3, playerButton4, playerButton5, playerButton6, playerButton7, playerButton8;
+    private List<FloatingActionButton> listButtonPlayer;
     private List<User> listplayer;
     int playerCount = 4;
+    private User answeringUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +42,14 @@ public class QuizActivity extends Activity {
 
         startButton = (Button) findViewById(R.id.startButton);
         answerButton = (Button) findViewById(R.id.answerButton);
-        playerButton1 = (Button) findViewById(R.id.player1);
-        playerButton2 = (Button) findViewById(R.id.player2);
-        playerButton3 = (Button) findViewById(R.id.player3);
-        playerButton4 = (Button) findViewById(R.id.player4);
-        playerButton5 = (Button) findViewById(R.id.player5);
-        playerButton6 = (Button) findViewById(R.id.player6);
-        playerButton7 = (Button) findViewById(R.id.player7);
-        playerButton8 = (Button) findViewById(R.id.player8);
+        playerButton1 = (FloatingActionButton) findViewById(R.id.player1);
+        playerButton2 = (FloatingActionButton) findViewById(R.id.player2);
+        playerButton3 = (FloatingActionButton) findViewById(R.id.player3);
+        playerButton4 = (FloatingActionButton) findViewById(R.id.player4);
+        playerButton5 = (FloatingActionButton) findViewById(R.id.player5);
+        playerButton6 = (FloatingActionButton) findViewById(R.id.player6);
+        playerButton7 = (FloatingActionButton) findViewById(R.id.player7);
+        playerButton8 = (FloatingActionButton) findViewById(R.id.player8);
         listplayer = initiateListPlayer();
 
         playerButton1.setOnClickListener(new View.OnClickListener() {
@@ -173,8 +175,29 @@ public class QuizActivity extends Activity {
         });
     }
 
-    public List<Button> initiateListButtononCreate(){
-        List<Button> initialButtonList = new ArrayList<>();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intentResult = getIntent();
+        boolean statusAnswer = intentResult.getBooleanExtra("statusAnswer", false);
+        answeringUser = (User) intentResult.getSerializableExtra("answeringUser");
+
+        Log.i("cekmasuksinigak", "onResume: " + statusAnswer);
+        if(answeringUser!=null){
+            Log.i("cekuserdata", "onResume: " + answeringUser.getNamaUser());
+            User userAdded = listplayer.get(answeringUser.getIdUser());
+            if(statusAnswer){
+                userAdded.setJumlahBenar(userAdded.getJumlahBenar()+1);
+            }else {
+
+            }
+            Log.i("cekudahnambahgak", "onResume: " + listplayer.get(answeringUser.getIdUser()).getJumlahBenar());
+        }
+
+    }
+
+    public List<FloatingActionButton> initiateListButtononCreate(){
+        List<FloatingActionButton> initialButtonList = new ArrayList<>();
             initialButtonList.add(playerButton1);
             initialButtonList.add(playerButton2);
             initialButtonList.add(playerButton3);
@@ -260,26 +283,26 @@ public class QuizActivity extends Activity {
     public List<User> initiateListPlayer(){
         List<User> listUserReturn = new ArrayList<>();
         User myUser = new User();
-        myUser.setIdUser("haha");
-        myUser.setNamaUser("haha");
+        myUser.setIdUser(0);
+        myUser.setNamaUser("player1");
         myUser.setJumlahBenar(0);
         myUser.setAnswerStatus(false);
 
         User myUser2 = new User();
-        myUser2.setIdUser("haha");
-        myUser2.setNamaUser("haha");
+        myUser2.setIdUser(1);
+        myUser2.setNamaUser("player2");
         myUser2.setJumlahBenar(0);
         myUser2.setAnswerStatus(false);
 
         User myUser3 = new User();
-        myUser3.setIdUser("haha");
-        myUser3.setNamaUser("haha");
+        myUser3.setIdUser(2);
+        myUser3.setNamaUser("player3");
         myUser3.setJumlahBenar(0);
         myUser3.setAnswerStatus(false);
 
         User myUser4 = new User();
-        myUser4.setIdUser("haha");
-        myUser4.setNamaUser("haha");
+        myUser4.setIdUser(3);
+        myUser4.setNamaUser("player4");
         myUser4.setJumlahBenar(0);
         myUser4.setAnswerStatus(false);
 
@@ -292,7 +315,7 @@ public class QuizActivity extends Activity {
     }
 
     public void initiateConditionButtonPlayer(){
-        for(Button button : listButtonPlayer){
+        for(FloatingActionButton button : listButtonPlayer){
             button.setClickable(true);
         }
         for(User user: listplayer){

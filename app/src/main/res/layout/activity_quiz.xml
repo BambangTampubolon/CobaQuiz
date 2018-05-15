@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player1"
@@ -24,7 +24,7 @@
             android:height="50dp"
             android:background="@color/colorLight"/>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player5"
@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/player2"
@@ -53,7 +53,7 @@
                 android:height="50dp"
                 android:background="@color/colorLight"/>
 
-            <Button
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/player6"
@@ -83,7 +83,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/player3"
@@ -92,7 +92,7 @@
                 android:height="50dp"
                 android:background="@color/colorLight"/>
 
-            <Button
+            <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/player7"
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player4"
@@ -132,7 +132,7 @@
             android:height="50dp"
             android:background="@color/colorLight"/>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/player8"

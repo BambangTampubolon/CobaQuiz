@@ -34,7 +34,7 @@ public class HomeActivity extends Activity {
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, PopUpStart.class));
+                startActivity(new Intent(HomeActivity.this, SettingGameRule.class));
             }
         });
 
